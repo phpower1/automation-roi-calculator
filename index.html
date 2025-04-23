@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automation ROI Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Add Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div class="calculator-container">
+        <header class="calculator-header">
+            <h1>Automation ROI Calculator</h1>
+            <p>Calculate the return on investment for implementing automation solutions</p>
+        </header>
+
+        <section class="calculator-body">
+            <!-- Input sections remain the same -->
+            <div class="input-section">
+                <!-- Implementation Costs Column -->
+                <div class="input-column">
+                    <h2>Implementation Costs</h2>
+                    <div class="input-group">
+                        <label for="software-cost">Software/License Costs ($)</label>
+                        <div class="input-field-wrapper">
+                            <button class="stepper-button minus" data-target="software-cost" aria-label="Decrease Software Cost">-</button>
+                            <input type="number" id="software-cost" value="3000.00" step="100" min="0">
+                            <button class="stepper-button plus" data-target="software-cost" aria-label="Increase Software Cost">+</button>
+                        </div>
+                        <span class="help-icon" title="Cost of software licenses or subscriptions.">?</span>
+                    </div>
+                    <div class="input-group">
+                        <label for="setup-cost">Setup & Integration Costs ($)</label>
+                        <div class="input-field-wrapper">
+                            <button class="stepper-button minus" data-target="setup-cost" aria-label="Decrease Setup Cost">-</button>
+                            <input type="number" id="setup-cost" value="25000.00" step="500" min="0">
+                            <button class="stepper-button plus" data-target="setup-cost" aria-label="Increase Setup Cost">+</button>
+                        </div>
+                         <span class="help-icon" title="One-time costs for setup, configuration, and integration.">?</span>
+                    </div>
+                    <div class="input-group">
+                        <label for="training-cost">Training Costs ($)</label>
+                        <div class="input-field-wrapper">
+                            <button class="stepper-button minus" data-target="training-cost" aria-label="Decrease Training Cost">-</button>
+                            <input type="number" id="training-cost" value="1000.00" step="100" min="0">
+                            <button class="stepper-button plus" data-target="training-cost" aria-label="Increase Training Cost">+</button>
+                        </div>
+                         <span class="help-icon" title="Costs associated with training employees to use the new system.">?</span>
+                    </div>
+                </div>
+
+                <!-- Current Process Costs Column -->
+                <div class="input-column">
+                    <h2>Current Process Costs</h2>
+                    <div class="input-group">
+                        <label for="num-employees">Number of Employees</label>
+                        <div class="input-field-wrapper">
+                            <button class="stepper-button minus" data-target="num-employees" aria-label="Decrease Employees">-</button>
+                            <input type="number" id="num-employees" value="10" step="1" min="0">
+                            <button class="stepper-button plus" data-target="num-employees" aria-label="Increase Employees">+</button>
+                        </div>
+                         <span class="help-icon" title="Number of employees involved in the process being automated.">?</span>
+                    </div>
+                    <div class="input-group">
+                        <label for="avg-wage">Average Hourly Wage ($)</label>
+                        <div class="input-field-wrapper">
+                            <button class="stepper-button minus" data-target="avg-wage" aria-label="Decrease Wage">-</button>
+                            <input type="number" id="avg-wage" value="60.00" step="1" min="0">
+                            <button class="stepper-button plus" data-target="avg-wage" aria-label="Increase Wage">+</button>
+                        </div>
+                         <span class="help-icon" title="Average fully-loaded hourly wage (including benefits) of involved employees.">?</span>
+                    </div>
+                    <div class="input-group">
+                        <label for="hours-per-task">Hours per Task (Monthly)</label>
+                        <div class="input-field-wrapper">
+                            <button class="stepper-button minus" data-target="hours-per-task" aria-label="Decrease Hours">-</button>
+                            <input type="number" id="hours-per-task" value="40" step="1" min="0">
+                            <button class="stepper-button plus" data-target="hours-per-task" aria-label="Increase Hours">+</button>
+                        </div>
+                         <span class="help-icon" title="Total monthly hours spent by all involved employees on the task(s) being automated.">?</span>
+                    </div>
+                     <div class="input-group">
+                        <label for="error-rate">Current Error Rate (%)</label>
+                        <div class="input-field-wrapper">
+                            <button class="stepper-button minus" data-target="error-rate" aria-label="Decrease Error Rate">-</button>
+                            <input type="number" id="error-rate" value="15" step="1" min="0" max="100">
+                            <button class="stepper-button plus" data-target="error-rate" aria-label="Increase Error Rate">+</button>
+                        </div>
+                         <span class="help-icon" title="Estimated percentage of tasks currently resulting in errors requiring rework.">?</span>
+                    </div>
+                </div>
+
+                <!-- Expected Automation Benefits Column -->
+                <div class="input-column">
+                    <h2>Expected Automation Benefits</h2>
+                    <div class="input-group">
+                        <label for="time-savings">Time Savings (%)</label>
+                        <div class="input-field-wrapper">
+                            <button class="stepper-button minus" data-target="time-savings" aria-label="Decrease Time Savings">-</button>
+                            <input type="number" id="time-savings" value="30" step="1" min="0" max="100">
+                            <button class="stepper-button plus" data-target="time-savings" aria-label="Increase Time Savings">+</button>
+                        </div>
+                         <span class="help-icon" title="Estimated percentage reduction in manual hours required for the task after automation.">?</span>
+                    </div>
+                    <div class="input-group">
+                        <label for="error-reduction">Error Reduction (%)</label>
+                        <div class="input-field-wrapper">
+                            <button class="stepper-button minus" data-target="error-reduction" aria-label="Decrease Error Reduction">-</button>
+                            <input type="number" id="error-reduction" value="60" step="1" min="0" max="100">
+                            <button class="stepper-button plus" data-target="error-reduction" aria-label="Increase Error Reduction">+</button>
+                        </div>
+                         <span class="help-icon" title="Estimated percentage reduction in the error rate after automation.">?</span>
+                    </div>
+                    <div class="input-group">
+                        <label for="maintenance-cost">Monthly Maintenance Cost ($)</label>
+                        <div class="input-field-wrapper">
+                            <button class="stepper-button minus" data-target="maintenance-cost" aria-label="Decrease Maintenance Cost">-</button>
+                            <input type="number" id="maintenance-cost" value="400.00" step="50" min="0">
+                            <button class="stepper-button plus" data-target="maintenance-cost" aria-label="Increase Maintenance Cost">+</button>
+                        </div>
+                         <span class="help-icon" title="Ongoing monthly costs for maintaining the automation solution (support, updates).">?</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <button class="calculate-button" id="calculate-btn">Calculate ROI</button>
+
+            <!-- Results Section (Initially Hidden) -->
+            <section class="results-section hidden" id="results-section">
+                <h2>Results</h2>
+                <!-- results-summary and results-breakdown remain the same -->
+                 <div class="results-summary">
+                    <div class="result-item">
+                        <span class="result-label">Total Implementation Cost</span>
+                        <span class="result-value" id="result-implementation-cost">$0.00</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Monthly Savings</span>
+                        <span class="result-value" id="result-monthly-savings">$0.00</span>
+                    </div>
+                     <div class="result-item">
+                        <span class="result-label">Payback Period</span>
+                        <span class="result-value" id="result-payback-period">N/A</span>
+                    </div>
+                     <div class="result-item">
+                        <span class="result-label">Annual ROI</span>
+                        <span class="result-value" id="result-annual-roi">N/A</span>
+                    </div>
+                </div>
+
+                <h2>Monthly Savings Breakdown</h2>
+                 <div class="results-breakdown">
+                     <div class="result-item">
+                        <span class="result-label">Labor Cost Savings</span>
+                        <span class="result-value" id="result-labor-savings">$0.00</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Error Cost Savings</span>
+                        <span class="result-value" id="result-error-savings">$0.00</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Maintenance Cost</span>
+                        <span class="result-value negative" id="result-maintenance-cost">-$0.00</span>
+                    </div>
+                 </div>
+
+                 <h2>ROI Projection (12 Months)</h2>
+                 <div class="roi-projection">
+                     <div class="graph-placeholder">
+                         <!-- Replace img with canvas -->
+                         <canvas id="roiChart"></canvas>
+                     </div>
+                     <!-- Remove the static legend div -->
+                     <!--
+                     <div class="graph-legend">
+                         <span><span class="legend-color" style="background-color: #4A90E2;"></span> Cumulative Savings</span>
+                         <span><span class="legend-color" style="background-color: #D0021B;"></span> Net ROI</span>
+                     </div>
+                     -->
+                 </div>
+
+                <div class="results-message" id="results-message">
+                    Calculation results will appear here.
+                </div>
+
+            </section>
+             <!-- End Results Section -->
+
+        </section>
+
+        <footer class="disclaimer">
+            Disclaimer: This calculator provides estimates based on the input parameters. Actual results may vary depending on specific implementation details and market conditions.
+        </footer>
+    </div>
+
+    <script src="script.js"></script> <!-- Link to the JavaScript file -->
+</body>
+</html>
